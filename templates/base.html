@@ -1,0 +1,250 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  {% comment %} BOOTSTRAP LINK {% endcomment %}
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  {% comment %} JQUERY UI LINK {% endcomment %}
+  <link href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
+  {% comment %} JQU STYLE LINK {% endcomment %}
+  <link href="{% static 'jqueryui/jqueryui.css' %}" rel="stylesheet">
+  {% comment %} STYLE LINK {% endcomment %}
+  <link href="{% static 'css/style.css' %}" rel="stylesheet" >
+  {% comment %} WOWJS ANIMATSIA LINK {% endcomment %}
+  <link href="{% static 'node_modules/wow.js/css/libs/animate.css' %}" rel="stylesheet">
+
+<style>
+.content{
+    display: grid;
+    grid-gap: 15px;
+    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+    /* grid-auto-rows: 2fr; */
+    grid-auto-flow: dense;
+}
+a{
+    list-style: none;
+    text-decoration: none;
+    color: black;
+}
+a:hover{
+    color: black;
+}
+.nav-item a {
+    color:slategrey;
+}
+.rasim{
+    width: 98%;
+    
+}
+img{
+    
+    background-repeat:no-repeat ;
+    background-size: cover;
+}
+.clearablefileinput {
+    background-color:green;
+    color: white;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid black;
+    
+}
+.kurish{
+    color: rgb(199, 195, 195);
+    margin-left: 10px;
+}
+i{
+    padding: 0;
+    margin-bottom: 8px;
+}
+
+h1{
+    color: red;
+}
+
+  h2{
+  color:blue;
+  }
+
+  ul a{
+  font-weight: 900;
+  }
+  .admin{
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: white;
+  transform: translateY(-10px);
+
+  }
+  .admin img{
+  width: 35px;
+  height: 35px;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+  margin: 0 auto;
+  padding: 0 auto;
+  border-top: 1px solid white ;
+  border-left: 1px solid white ;
+  border-right: 1px solid white ;
+  border-bottom:  1px solid white;
+  }
+
+  .navbar-nav li{
+  background-color: #718080;
+  margin-top:2px;
+  margin-right:2px;
+  border:.5px solid white;
+  }
+
+  @media (min-width:992px) {
+  .navbar-nav li:nth-child(1){
+      border-radius: 5px 0 0 5px;
+      
+  }
+  .navbar-nav li:nth-child(6){
+      border-radius: 0 5px 5px 0;
+      
+  }
+  }
+
+  #forgot{
+  border-radius: 5px;
+  }
+  #fontcolot{
+  background-color:#4D4D4D;
+  height:17cm;
+  position: relative;
+  }
+  #formcolor{
+  border-radius: 5px;
+  background-color:white;
+
+
+  }
+  #hint_id_password1,#hint_id_new_password1{
+  display: none;
+  }
+</style>
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+  <div class="container-fluid">
+    {% if user.is_authenticated %}
+    <li class="nav-item dropdown">
+        
+      <div class='admin mx-sm-2'  id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img class='images' src="{% static 'images/logo.jpg' %}" ></div>
+      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <li><a class="dropdown-item" href="#">Admin</a></li>
+        <li><a class="dropdown-item" href="{% url 'create' %}">Maqola Qo'shish</a></li>
+        <li><a class="dropdown-item" href="{% url 'password_change' %}" tabindex="-1" aria-disabled="true">Change Password</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+      </ul>
+    </li>
+
+    {% endif %}   
+    <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-align-justify"><line x1="21" y1="10" x2="3" y2="10"/><line x1="21" y1="6" x2="3" y2="6"/><line x1="21" y1="14" x2="3" y2="14"/><line x1="21" y1="18" x2="3" y2="18"/></svg>
+    </button>
+    <div class="collapse navbar-collapse " id="navbarSupportedContent">
+      
+      
+      <ul class="navbar-nav  me-auto mb-3 mt-2 mt-lg-0  mb-lg-0 ms-lg-2 ">
+
+      {% if user.is_authenticated %}
+        
+        <li class="nav-item ">
+          <a class="nav-link active text-white d-flex justify-content-center" aria-current="page" href="{% url 'login' %}"> ЎЗБЕКИСТОН</a>
+        </li>
+
+        <li class="nav-item ">
+          <a class="nav-link active text-white d-flex justify-content-center" aria-current="page" href="{% url 'login' %}">ЖАҲОН</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link active text-white d-flex justify-content-center" aria-current="page" href="{% url 'login' %}">ИҚТИСОДИЁТ</a>
+        </li>
+        
+        <li class="nav-item ">
+          <a class="nav-link active text-white d-flex justify-content-center" aria-current="page" href="{% url 'login' %}">ЖАМИЯТ</a>
+        </li>
+    
+        <li class="nav-item ">
+          <a class="nav-link active text-white d-flex justify-content-center" aria-current="page" href="{% url 'login' %}">ФАН ВА ТЕХНИКА</a>
+        </li>
+
+        <li class="nav-item ">
+          <a class="nav-link active text-white d-flex justify-content-center" aria-current="page" href="{% url 'login' %}">СПОРТ</a>
+        </li>
+            
+      {% else %}
+
+        <li id="forgot">
+          <a class="nav-link text-white d-flex justify-content-center " href="{% url 'password_reset' %}" tabindex="-1" aria-disabled="true">Forgot your password?</a>
+        </li>    
+
+      {% endif %}   
+                
+      </ul>
+     
+      
+      <form class="d-flex">
+        {% if user.is_authenticated %}
+
+          <div class="input-group ">
+            <input id="tags" class="form-control" type="search" placeholder="Search" aria-label="Search">
+            <a class="btn btn-outline-dark text-light border border-light me-lg-2" type="button" id="button-addon2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </a>
+          </div>
+       
+        {%else%}
+          
+          <div class='row ms-1 me-3'>
+            <a class="btn btn-success nav-link text-white col me-1" href="{% url 'login' %}">LogIn</a>
+            <a class="btn btn-primary nav-link text-white col ms-1" href="{% url 'singup' %}">SingUp</a>
+          </div>
+          
+
+        {%endif%}
+      </form>
+      
+    </div>
+  </div>
+</nav>
+
+
+  {% block content %}
+    
+  {% endblock content %}
+
+  {% comment %} JQUERY SCRIPT {% endcomment %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  {% comment %} JQUERY UI SCRIPT {% endcomment %}
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+  {% comment %} BOOTSTRAP SCRIPT {% endcomment %}
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+
+  {% comment %} WOWJS SCRIPT{% endcomment %}
+  <script src="{% static 'node_modules/wow.js/dist/wow.js' %}"></script>
+  <script> new WOW().init(); </script>
+
+  {% comment %} JQU SCRIPT {% endcomment %}
+  <script src="{% static 'jqueryui/jqueryui.js' %}"></script>
+
+  {% comment %} MAIN JS SCRIPT {% endcomment %}
+  <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

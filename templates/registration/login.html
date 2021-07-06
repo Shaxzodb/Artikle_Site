@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class='animatsia'>
+<div class='bgcolor d-flex align-items-center' id ="fontcolot">
+
+<div class="container col-sm-6 col-xs-12 " id ="formcolor">
+    <div class=" justify-content-center formcolor p-4 ">
+        <form method='post' >
+            <h2 class='mt-2'>LogIn</h2>   
+            {% csrf_token %}{{form|crispy}}
+            <button type='submit' class="btn btn-primary mt-4 mb-4 w-25">Submit</button>   
+        </form>
+    </div>
+</div>
+</div>
+{% endblock content %}
