@@ -23,7 +23,7 @@ class AlerCreateViews(LoginRequiredMixin,CreateView):
     login_url='login'
     
 
-class AlerDeleteViews(DeleteView):
+class AlerDeleteViews(LoginRequiredMixin,DeleteView):
     model=Article
     template_name='delete.html'
     fields=('title','text','author','date','kurish')
@@ -31,11 +31,10 @@ class AlerDeleteViews(DeleteView):
     login_url='login'
 
     
-class AlerUpdateViews(UpdateView):
+class AlerUpdateViews(LoginRequiredMixin,UpdateView):
     model=Article
     template_name='update.html'
     fields=('title','text','kurish')
     success_url=reverse_lazy('article')
     login_url='login'
-    
     

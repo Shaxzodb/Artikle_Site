@@ -131,8 +131,8 @@ STATICFILES_STORAGE='whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 AUTH_USER_MODEL='users.CreateUserViews'
-LOGIN_REDIRECT_URL="home"
-LOGOUT_REDIRECT_URL="home"
+LOGIN_REDIRECT_URL="article"
+LOGOUT_REDIRECT_URL="article"
 
 # BOOTSTRAP ULASH
 CRISPY_TEMPLATE_PACK='bootstrap4'
