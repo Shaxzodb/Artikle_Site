@@ -23,23 +23,19 @@ class AlerCreateViews(LoginRequiredMixin,CreateView):
     login_url='login'
     
 
-class AlerDeleteViews(UserPassesTestMixin,LoginRequiredMixin,DeleteView):
+class AlerDeleteViews(DeleteView):
     model=Article
     template_name='delete.html'
     fields=('title','text','author','date','kurish')
     success_url=reverse_lazy('article')
     login_url='login'
 
-    def test_func(self):
-        obj=self.get_object()
-        return obj.author==self.request.user
-class AlerUpdateViews(UserPassesTestMixin,LoginRequiredMixin,UpdateView):
+    
+class AlerUpdateViews(UpdateView):
     model=Article
     template_name='update.html'
     fields=('title','text','kurish')
     success_url=reverse_lazy('article')
     login_url='login'
-    def test_func(self):
-        obj=self.get_object()
-        return obj.author==self.request.user
+    
     
