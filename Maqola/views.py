@@ -18,12 +18,10 @@ class AlerListViewPost(LoginRequiredMixin,ListView):
 class AlerCreateViews(LoginRequiredMixin,CreateView):
     model=Article
     template_name='new.html'
-    fields=('title','text','kurish')
+    fields=('title','text','author','kurish')
     success_url=reverse_lazy('article')
     login_url='login'
-    def form_valid(self, form):
-        form.isinstance.author = self.request.user
-        return super().form_valid(form)
+    
 
 class AlerDeleteViews(UserPassesTestMixin,LoginRequiredMixin,DeleteView):
     model=Article
